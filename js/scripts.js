@@ -27,6 +27,8 @@ const products = [
     { id: 12, title: "Yoga Mat", description: "Extra thick, non-slip grip.", price: 25.99, image: "https://placehold.co/400x300/D97706/ffffff?text=Yoga" },
 ]
 
+
+let shoppingCart = []
 const renderProducts = () => {
     let itemsContainer = document.getElementById("items-container")
     if (!itemsContainer) {
@@ -34,7 +36,7 @@ const renderProducts = () => {
         return;
     }
 
-    let cardsHtml = '<div class="row g-4 justify-content-center">'
+    let cardsHtml = "<div class='row g-4 justify-content-center'>"
 
 
     cardsHtml += products.map(product => {
@@ -44,16 +46,74 @@ const renderProducts = () => {
                     <div class="card-body">
                         <h5 class="card-title">${product.title}</h5>
                         <p class="card-text">${product.description}</p>
-                        <p class="card-text"><strong>$${product.price.toFixed(2)}</strong></p>
-                        <a href="#" class="btn btn-primary">Add to Cart</a>
+                        <div id="add-to-cart-alert${product.id}" class="alert alert-success alert-dismissible fade show d-none" role="alert">Item added to cart!</div>                        <p class="card-text"><b>$${product.price.toFixed(2)}</b></p>
+                        <a href="#" id=${product.id} onclick="addToCart(this.id)" class="btn btn-primary">Add to Cart</a>
                     </div>
                 </div>
             `
     }).join("");
-    cardsHtml += '</div>';
+    cardsHtml += "</div>";
 
     itemsContainer.innerHTML = cardsHtml;
 }
+/*
+    Alert works like this: we have a pre added alert div with
+    the d-none element so it is hidden first and the
+    id of the product so we can reach it.
+    Then if the button is clicked we remove the d-none
+    class element where the id of the alert is the 
+    same as the id of the product so the
+    alert shows up in the right card.
+    Then with the timeout function add the d-none back to
+    the div after 3 seconds so the alert fades away
+*/
+
+const addToCart = (id) => {
+    const alert = document.getElementById(`add-to-cart-alert${id}`)
+    try {
+        products.forEach(product => {
+            if (product.id == id) {
+                shoppingCart.push(product)
+                alert.classList.remove("d-none")
+                setTimeout(() => {
+                    alert.classList.add("d-none")
+                }, 3000)
+            }
+        });
+
+    } catch (error) {
+        console.log("Could not find item")
+        console.log(error)
+    }
+}
+
+const ShoppingCart = () => {
+
+    tableContent = document.getElementById("table-content")
+    finalPrice = document.getElementById("final-price")
+    let price = shoppingCart.reduce((accumulator,product)=>{
+        return accumulator+product.price
+    },0)
+    //js reduce method is for accumulating a specific value of an array
+    //found it after some searching on how I can sum up the values: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce
+    let discount = 0
+    if (shoppingCart.length>=3) {
+        price-=price*0.25
+        discount=25
+    }
+    tableContent.innerHTML="" //have to clear popup so it does not add more products to cart every time you click the button
+    tableContent.innerHTML += shoppingCart.map(product => {
+        return `
+            <tr>
+                <td>${product.title}</td>
+                <td>$${product.price}</td>
+            </tr>
+        `
+    }).join("")
+    finalPrice.innerHTML=`$${price.toFixed(2)} <b>(-${discount}%)</b>`
+}
+
+
 
 renderProducts()
 

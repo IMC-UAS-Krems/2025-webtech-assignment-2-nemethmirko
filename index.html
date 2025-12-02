@@ -19,8 +19,12 @@
             <div>
                 <h1>Welcome to our organization's webpage!</h1>
                 <h2>You can buy/gift all of the items you see below to people in need</h2>
+                <h3>Discount if you buy 3 or more items at once!</h3>
             </div>
-            <button type="button" class="btn btn-success" style="margin-bottom: 5%;">Check your cart</button>
+            <button onclick="ShoppingCart()" type="button" class="btn btn-success" data-bs-toggle="modal"
+                data-bs-target="#cartModal" style="margin-bottom: 5%;">
+                Check your cart
+            </button>
         </header>
         <div class="container">
             <div id="items-container" class="container text-center">
@@ -28,6 +32,57 @@
                 <!--Card is from here https://getbootstrap.com/docs/5.3/components/card/-->
             </div>
         </div>
+        <!--The modal starts here-->
+        <!--Popup modal idea from bootstrap https://getbootstrap.com/docs/5.3/components/modal/#how-it-works-->
+        <div class="modal fade" id="cartModal" tabindex="-1">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-head">Cart</h5>
+                        <button id="checkout-button" class="btn btn-success ms-auto" data-bs-target="#checkOutModal"
+                            data-bs-toggle="modal">To checkout</button>
+                    </div>
+                    <div class="modal-body">
+                        <table id="table" style="text-align: center;" class='table table-striped'>
+                            <thead>
+                                <tr>
+                                    <th>Product</th>
+                                    <th>Price</th>
+                                </tr>
+                            </thead>
+                            <tbody id="table-content">
+                                <!--table rows will be injected here by js-->
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td><b>Final price</b></td>
+                                    <!--final price will be written here by js-->
+                                    <td><b><span id="final-price"></span></b></td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--
+        Still working on checkout!!
+
+
+        <div class="modal fade" id="checkOutModal" tabindex="-1">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-head">Checkout</h5>
+                        <div class="modal-body">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        -->
+
     </div>
     <script defer src="/js/scripts.js"></script>
 </body>
