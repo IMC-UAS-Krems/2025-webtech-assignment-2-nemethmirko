@@ -1,0 +1,19 @@
+#container{
+    text-align: center;
+    margin: auto;
+}
+
+.col{
+    background-color: grey;
+    margin: 2px;
+    animation: fadeIn 1s;
+}
+
+.hidden{
+    opacity: 0;
+    transition: all 1s;
+}
+
+.show{
+    opacity: 1;
+}
