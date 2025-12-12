@@ -13,18 +13,18 @@ const observer = new IntersectionObserver((entries) => {
 
 
 const products = [
-    { id: 1, title: "Wireless Earbuds", description: "Noise-cancelling, 24-hour battery life.", price: 129.99, image: "https://placehold.co/400x300/3B82F6/ffffff?text=Earbuds" },
-    { id: 2, title: "Mechanical Keyboard", description: "Tactile brown switches, RGB backlit.", price: 99.50, image: "https://placehold.co/400x300/EF4444/ffffff?text=Keyboard" },
-    { id: 3, title: "Vintage Camera", description: "Classic 35mm film camera, fully manual.", price: 249.00, image: "https://placehold.co/400x300/10B981/ffffff?text=Camera" },
-    { id: 4, title: "Smart Watch", description: "Heart rate monitor, waterproof design.", price: 175.99, image: "https://placehold.co/400x300/F59E0B/ffffff?text=SmartWatch" },
-    { id: 5, title: "Portable Blender", description: "Perfect for smoothies on the go.", price: 35.00, image: "https://placehold.co/400x300/8B5CF6/ffffff?text=Blender" },
-    { id: 6, title: "E-Reader", description: "Paper-like display, thousands of books.", price: 139.99, image: "https://placehold.co/400x300/EC4899/ffffff?text=E-Reader" },
-    { id: 7, title: "Gaming Mouse", description: "High precision sensor, customizable weights.", price: 55.99, image: "https://placehold.co/400x300/06B6D4/ffffff?text=Mouse" },
-    { id: 8, title: "Dimmable Desk Lamp", description: "Modern design with touch control.", price: 45.00, image: "https://placehold.co/400x300/F97316/ffffff?text=Lamp" },
-    { id: 9, title: "Bluetooth Speaker", description: "Powerful bass, IPX7 water resistance.", price: 89.99, image: "https://placehold.co/400x300/6B7280/ffffff?text=Speaker" },
-    { id: 10, title: "Travel Backpack", description: "Durable, fits a 15-inch laptop.", price: 79.99, image: "https://placehold.co/400x300/1C64F2/ffffff?text=Backpack" },
-    { id: 11, title: "Coffee Brewer", description: "Programmable automatic drip machine.", price: 65.00, image: "https://placehold.co/400x300/047857/ffffff?text=Coffee" },
-    { id: 12, title: "Yoga Mat", description: "Extra thick, non-slip grip.", price: 25.99, image: "https://placehold.co/400x300/D97706/ffffff?text=Yoga" },
+    { id: 1, title: "Emergency Solar Light Kit", description: "Provides essential lighting for a family in an off-grid location.", price: 25.00, image: "./img/emergencySolar.avif" },
+    { id: 2, title: "Warm Winter Blanket", description: "A high-quality, thermal blanket to provide warmth and shelter.", price: 35.00, image: "./img/winterBlanket.avif" },
+    { id: 3, title: "Child's Educational Tablet", description: "A pre-loaded tablet with offline learning materials for one student.", price: 150.00, image: "./img/educationalTablet.jpg" },
+    { id: 4, title: "Water Purification Straw", description: "Portable device that filters contaminated water for safe drinking.", price: 50.00, image: "./img/waterPurifStraw.webp" },
+    { id: 5, title: "Nutrient-Dense Food Pack", description: "Provides a week's supply of staple foods for an individual.", price: 40.00, image: "./img/foodPack.webp" },
+    { id: 6, title: "Basic First Aid Kit", description: "Includes essential supplies for treating minor injuries and illnesses.", price: 15.00, image: "./img/firstAidKit.jpg" },
+    { id: 7, title: "Durable Work Gloves", description: "Protective gear for safe cleanup and construction efforts.", price: 12.00, image: "./img/workGloves.jpg" },
+    { id: 8, title: "Rechargeable Desk Lamp", description: "Provides focused, long-lasting light for study and work.", price: 30.00, image: "./img/deskLamp.webp" },
+    { id: 9, title: "Hygiene Essentials Kit", description: "Contains soap, toothbrush, toothpaste, and shampoo for personal care.", price: 10.00, image: "./img/hygieneKit.avif" },
+    { id: 10, title: "School Supplies Backpack", description: "A durable backpack filled with notebooks, pens, and pencils.", price: 45.00, image: "./img/backpack.jpg" },
+    { id: 11, title: "Insulated Thermal Mug", description: "Keeps drinks hot or cold for essential hydration.", price: 8.00, image: "./img/thermalMug.webp" },
+    { id: 12, title: "Heavy-Duty Ground Tarp", description: "Waterproof sheet for ground cover or temporary roofing.", price: 20.00, image: "./img/groundTarp.webp" },
 ]
 
 
@@ -41,13 +41,13 @@ const renderProducts = () => {
 
     cardsHtml += products.map(product => {
         return `
-                <div class="card col-auto hidden" style="width: 18rem; margin: 3px;">
+                <div class="card col-auto hidden d-flex flex-column" style="width: 18rem; margin: 3px;">
                     <img src="${product.image}" class="card-img-top" alt="${product.title}">
-                    <div class="card-body">
+                    <div class="card-body d-flex flex-column">
                         <h5 class="card-title">${product.title}</h5>
                         <p class="card-text">${product.description}</p>
                         <div id="add-to-cart-alert${product.id}" class="alert alert-success alert-dismissible fade show d-none" role="alert">Item added to cart!</div>                        <p class="card-text"><b>$${product.price.toFixed(2)}</b></p>
-                        <a href="#" id=${product.id} onclick="addToCart(this.id)" class="btn btn-primary">Add to Cart</a>
+                        <a href="#" id=${product.id} onclick="addToCart(this.id)" class="btn btn-primary mt-auto">Add to Cart</a>
                     </div>
                 </div>
             `
@@ -88,21 +88,34 @@ const addToCart = (id) => {
 }
 
 const ShoppingCart = () => {
-
-    tableContent = document.getElementById("table-content")
-    finalPrice = document.getElementById("final-price")
-    let price = shoppingCart.reduce((accumulator,product)=>{
-        return accumulator+product.price
-    },0)
+    let tableContent = document.getElementById("table-content")
+    let confirmTableContent = document.getElementById("confirm-table-content")
+    let finalPrice = document.getElementById("final-price")
+    let confirmFinalPrice = document.getElementById("confirm-final-price")
+    let price = shoppingCart.reduce((accumulator, product) => {
+        return accumulator + product.price
+    }, 0)
     //js reduce method is for accumulating a specific value of an array
     //found it after some searching on how I can sum up the values: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce
     let discount = 0
-    if (shoppingCart.length>=3) {
-        price-=price*0.25
-        discount=25
+    if (shoppingCart.length >= 3) {
+        price -= price * 0.25
+        discount = 25
     }
-    tableContent.innerHTML="" //have to clear popup so it does not add more products to cart every time you click the button
+    tableContent.innerHTML = "" //have to clear popup so it does not add more products to cart every time you click the button
     tableContent.innerHTML += shoppingCart.map(product => {
+        return `
+            <tr>
+                <td>${product.title}</td>
+                <td>$${product.price}</td>
+                <td><div class="deleteText" onclick="deleteProduct(${product.id})" style="color: red">Delete</div></td>
+            </tr>
+        `
+    }).join("")
+    finalPrice.innerHTML = `$${price.toFixed(2)} <b>(discount: -${discount}%)</b>`
+    confirmTableContent.innerHTML = ""
+    confirmTableContent.innerHTML += shoppingCart.map(product => {
+        console.log(product.title)
         return `
             <tr>
                 <td>${product.title}</td>
@@ -110,12 +123,46 @@ const ShoppingCart = () => {
             </tr>
         `
     }).join("")
-    finalPrice.innerHTML=`$${price.toFixed(2)} <b>(-${discount}%)</b>`
+    confirmFinalPrice.innerHTML = `$${price.toFixed(2)} <b>(discount: -${discount}%)</b>`
+
+}
+
+const deleteProduct = (product) => {
+    shoppingCart.pop(product)
+    ShoppingCart()
+
 }
 
 
+const confirmOrder = () => {
+    const form = document.getElementById('checkoutForm');
+    const formDiv = document.getElementById("formDiv");
+    const buttonDiv = document.getElementById("buttonDiv");
+
+    if (!form) {
+        console.error("Form element 'checkoutForm' not found.");
+        return;
+    }
+
+    //Add the 'was-validated' class to manually trigger Bootstrap's validation messages
+    form.classList.add('was-validated');
+
+    //Check if all required fields are valid.
+    if (form.checkValidity()) {
+        formDiv.classList.add("d-none");
+        buttonDiv.classList.remove("d-none");
+        ShoppingCart()
+    }
+}
+
+const confirmed=()=>{
+    alert("Thank you for your purchase!")
+    window.location.reload()
+}
 
 renderProducts()
+
+
 
 const hiddenElements = document.querySelectorAll('.hidden')
 hiddenElements.forEach((el) => observer.observe(el))

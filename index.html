@@ -16,74 +16,161 @@
 <body>
     <div id="container">
         <header>
-            <div>
+            <div id="headerDiv">
                 <h1>Welcome to our organization's webpage!</h1>
                 <h2>You can buy/gift all of the items you see below to people in need</h2>
-                <h3>Discount if you buy 3 or more items at once!</h3>
+                <h3>25% Discount if you buy 3 or more items at once!</h3>
             </div>
             <button onclick="ShoppingCart()" type="button" class="btn btn-success" data-bs-toggle="modal"
                 data-bs-target="#cartModal" style="margin-bottom: 5%;">
                 Check your cart
             </button>
         </header>
-        <div class="container">
-            <div id="items-container" class="container text-center">
-                <!--cards will be injected here by js-->
-                <!--Card is from here https://getbootstrap.com/docs/5.3/components/card/-->
-            </div>
-        </div>
-        <!--The modal starts here-->
-        <!--Popup modal idea from bootstrap https://getbootstrap.com/docs/5.3/components/modal/#how-it-works-->
-        <div class="modal fade" id="cartModal" tabindex="-1">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-head">Cart</h5>
-                        <button id="checkout-button" class="btn btn-success ms-auto" data-bs-target="#checkOutModal"
-                            data-bs-toggle="modal">To checkout</button>
-                    </div>
-                    <div class="modal-body">
-                        <table id="table" style="text-align: center;" class='table table-striped'>
-                            <thead>
-                                <tr>
-                                    <th>Product</th>
-                                    <th>Price</th>
-                                </tr>
-                            </thead>
-                            <tbody id="table-content">
-                                <!--table rows will be injected here by js-->
-                            </tbody>
-                            <tfoot>
-                                <tr>
-                                    <td><b>Final price</b></td>
-                                    <!--final price will be written here by js-->
-                                    <td><b><span id="final-price"></span></b></td>
-                                </tr>
-                            </tfoot>
-                        </table>
-                    </div>
+        <main>
+            <div class="container">
+                <div id="items-container" class="container text-center">
+                    <!--cards will be injected here by js-->
+                    <!--Card is from here https://getbootstrap.com/docs/5.3/components/card/-->
                 </div>
             </div>
-        </div>
-        <!--
-        Still working on checkout!!
 
-
-        <div class="modal fade" id="checkOutModal" tabindex="-1">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-head">Checkout</h5>
+            <!--Popup modal idea from bootstrap https://getbootstrap.com/docs/5.3/components/modal/#how-it-works-->
+            <div class="modal fade" id="cartModal" tabindex="-1">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-head">Cart</h5>
+                            <button id="checkout-button" class="btn btn-success ms-auto" data-bs-target="#checkOutModal"
+                                data-bs-toggle="modal" onclick="ShoppingCart()">To checkout</button>
+                        </div>
                         <div class="modal-body">
-
+                            <table id="table" style="text-align: center;" class='table table-striped'>
+                                <thead>
+                                    <tr>
+                                        <th>Product</th>
+                                        <th>Price</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="table-content">
+                                    <!--table rows will be injected here by js-->
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td><b>Final price</b></td>
+                                        <!--final price will be written here by js-->
+                                        <td><b><span id="final-price"></span></b></td>
+                                    </tr>
+                                </tfoot>
+                            </table>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        -->
 
+            <div class="modal fade" id="checkOutModal" tabindex="-1">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-head">Checkout</h5>
+                        </div>
+                        <div class="modal-body">
+                            <form id="checkoutForm" class="row g-3 needs-validation" action="#" method="get" novalidate>
+                                <div id="formDiv" class="row g-3">
+                                    <div class="col-md-4">
+                                        <label for="validationCustom01" class="form-label">First name</label>
+                                        <input type="text" class="form-control" id="validationCustom01" value="Mark"
+                                            required>
+                                        <div class="valid-feedback">
+                                            Looks good!
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="validationCustom02" class="form-label">Last name</label>
+                                        <input type="text" class="form-control" id="validationCustom02" value="Otto"
+                                            required>
+                                        <div class="valid-feedback">
+                                            Looks good!
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <label for="validationCustom03" class="form-label">Country</label>
+                                        <input type="text" class="form-control" id="validationCustom03" required>
+                                        <div class="valid-feedback">
+                                            Looks good!
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <label for="validationCustom04" class="form-label">City</label>
+                                        <input type="text" class="form-control" id="validationCustom04" required>
+                                        <div class="invalid-feedback">
+                                            Please provide a valid city.
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label for="validationCustom05" class="form-label">Zip</label>
+                                        <input type="text" class="form-control" id="validationCustom05" required>
+                                        <div class="invalid-feedback">
+                                            Please provide a valid zip.
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <label for="validationCustom06" class="form-label">Email</label>
+                                        <input type="email" class="form-control" id="validationCustom06" required>
+                                        <div class="invalid-feedback">
+                                            Please provide a valid email.
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="" id="invalidCheck"
+                                                required>
+                                            <label class="form-check-label" for="invalidCheck">
+                                                Agree to terms and conditions
+                                            </label>
+                                            <div class="invalid-feedback">
+                                                You must agree before submitting.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button class="btn btn-warning col-12" type="button" onclick="confirmOrder()">To
+                                        confirm</button>
+                                </div>
+
+                                <div id="buttonDiv" class="row g-3 d-none">
+
+                                    <table id="confirmTable" style="text-align: center;" class='table table-striped'>
+                                        <thead>
+                                            <tr>
+                                                <td>Product</td>
+                                                <td>Price</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="confirm-table-content">
+
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <td><b>Final price</b></td>
+                                                <td><b><span id="confirm-final-price"></span></b></td>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                    <div class="col-12">
+                                        <button class="btn btn-success" type="button" onclick="confirmed()">Confirm order</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
     </div>
+    </main>
+
     <script defer src="/js/scripts.js"></script>
 </body>
 
