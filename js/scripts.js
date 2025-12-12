@@ -13,16 +13,16 @@ const observer = new IntersectionObserver((entries) => {
 
 
 const products = [
-    { id: 1, title: "Emergency Solar Light Kit", description: "Provides essential lighting for a family in an off-grid location.", price: 25.00, image: "./img/emergencySolar.avif" },
+    { id: 1, title: "Solar Light Kit", description: "Provides essential lighting for a family in an off-grid location.", price: 25.00, image: "./img/emergencySolar.jpg" },
     { id: 2, title: "Warm Winter Blanket", description: "A high-quality, thermal blanket to provide warmth and shelter.", price: 35.00, image: "./img/winterBlanket.avif" },
-    { id: 3, title: "Child's Educational Tablet", description: "A pre-loaded tablet with offline learning materials for one student.", price: 150.00, image: "./img/educationalTablet.jpg" },
+    { id: 3, title: "Educational Tablet", description: "A pre-loaded tablet with offline learning materials for one student.", price: 150.00, image: "./img/educationalTablet.webp" },
     { id: 4, title: "Water Purification Straw", description: "Portable device that filters contaminated water for safe drinking.", price: 50.00, image: "./img/waterPurifStraw.webp" },
-    { id: 5, title: "Nutrient-Dense Food Pack", description: "Provides a week's supply of staple foods for an individual.", price: 40.00, image: "./img/foodPack.webp" },
-    { id: 6, title: "Basic First Aid Kit", description: "Includes essential supplies for treating minor injuries and illnesses.", price: 15.00, image: "./img/firstAidKit.jpg" },
+    { id: 5, title: "Food Pack", description: "Provides a week's supply of staple foods for an individual.", price: 40.00, image: "./img/foodPack.webp" },
+    { id: 6, title: "Basic First Aid Kit", description: "Includes essential supplies for treating minor injuries and illnesses.", price: 15.00, image: "./img/firstAidKit.webp" },
     { id: 7, title: "Durable Work Gloves", description: "Protective gear for safe cleanup and construction efforts.", price: 12.00, image: "./img/workGloves.jpg" },
     { id: 8, title: "Rechargeable Desk Lamp", description: "Provides focused, long-lasting light for study and work.", price: 30.00, image: "./img/deskLamp.webp" },
     { id: 9, title: "Hygiene Essentials Kit", description: "Contains soap, toothbrush, toothpaste, and shampoo for personal care.", price: 10.00, image: "./img/hygieneKit.avif" },
-    { id: 10, title: "School Supplies Backpack", description: "A durable backpack filled with notebooks, pens, and pencils.", price: 45.00, image: "./img/backpack.jpg" },
+    { id: 10, title: "School Supplies", description: "A durable backpack filled with notebooks, pens, and pencils.", price: 45.00, image: "./img/backpack.jpg" },
     { id: 11, title: "Insulated Thermal Mug", description: "Keeps drinks hot or cold for essential hydration.", price: 8.00, image: "./img/thermalMug.webp" },
     { id: 12, title: "Heavy-Duty Ground Tarp", description: "Waterproof sheet for ground cover or temporary roofing.", price: 20.00, image: "./img/groundTarp.webp" },
 ]
@@ -41,13 +41,22 @@ const renderProducts = () => {
 
     cardsHtml += products.map(product => {
         return `
-                <div class="card col-auto hidden d-flex flex-column" style="width: 18rem; margin: 3px;">
+                <div class="card col-auto hidden d-flex flex-column" style="width: 18rem; margin: 3px; padding-top:10px">
                     <img src="${product.image}" class="card-img-top" alt="${product.title}">
                     <div class="card-body d-flex flex-column">
-                        <h5 class="card-title">${product.title}</h5>
-                        <p class="card-text">${product.description}</p>
-                        <div id="add-to-cart-alert${product.id}" class="alert alert-success alert-dismissible fade show d-none" role="alert">Item added to cart!</div>                        <p class="card-text"><b>$${product.price.toFixed(2)}</b></p>
-                        <a href="#" id=${product.id} onclick="addToCart(this.id)" class="btn btn-primary mt-auto">Add to Cart</a>
+                        <div style="margin-top:50% margin-bottom:50%">
+                            <h5 class="card-title">${product.title}</h5>
+                            <p class="card-text">${product.description}</p>
+                            <div id="add-to-cart-alert${product.id}" class="alert alert-success alert-dismissible fade show d-none" role="alert">Item added to cart!</div>
+                        </div>
+                        <div class="card-text-price">
+                            <div>
+                                <p class="card-text"><b>$${product.price.toFixed(2)}</b></p>
+                            </div>
+                            <div>
+                                <a href="#" id=${product.id} onclick="addToCart(this.id)" class="btn mt-auto">Add to Cart</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             `
@@ -115,7 +124,6 @@ const ShoppingCart = () => {
     finalPrice.innerHTML = `$${price.toFixed(2)} <b>(discount: -${discount}%)</b>`
     confirmTableContent.innerHTML = ""
     confirmTableContent.innerHTML += shoppingCart.map(product => {
-        console.log(product.title)
         return `
             <tr>
                 <td>${product.title}</td>
@@ -137,7 +145,7 @@ const deleteProduct = (product) => {
 const confirmOrder = () => {
     const form = document.getElementById('checkoutForm');
     const formDiv = document.getElementById("formDiv");
-    const buttonDiv = document.getElementById("buttonDiv");
+    const confirmDiv = document.getElementById("confirmDiv");
 
     if (!form) {
         console.error("Form element 'checkoutForm' not found.");
@@ -150,12 +158,12 @@ const confirmOrder = () => {
     //Check if all required fields are valid.
     if (form.checkValidity()) {
         formDiv.classList.add("d-none");
-        buttonDiv.classList.remove("d-none");
+        confirmDiv.classList.remove("d-none");
         ShoppingCart()
     }
 }
 
-const confirmed=()=>{
+const confirmed = () => {
     alert("Thank you for your purchase!")
     window.location.reload()
 }
@@ -163,6 +171,6 @@ const confirmed=()=>{
 renderProducts()
 
 
-
+//part of fade animation
 const hiddenElements = document.querySelectorAll('.hidden')
 hiddenElements.forEach((el) => observer.observe(el))

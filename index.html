@@ -16,10 +16,38 @@
 <body>
     <div id="container">
         <header>
+            <!--scrolling text from here: https://dev.to/kaja_uvais_a8691e947dd399/create-a-infinite-scrolling-marquee-with-html-and-css-39el-->
+            <nav class="navbar bg-body-tertiary">
+                <div id="inner-scroll" class="container-fluid">
+                    <div class="scrolling-content">
+                        <div class="navText">
+                            Welcome to our organization's webpage!
+                        </div>
+                        <div class="navText">
+                            You can gift all of the items you see below to people in need
+                        </div>
+                        <div class="navText">
+                            25% Discount if you buy 3 or more items at once!
+                        </div>
+                    </div>
+
+                    <div class="scrolling-content">
+                        <div class="navText">
+                            Welcome to our organization's webpage!
+                        </div>
+                        <div class="navText">
+                            You can gift all of the items you see below to people in need
+                        </div>
+                        <div class="navText">
+                            25% Discount if you buy 3 or more items at once!
+                        </div>
+                    </div>
+                </div>
+            </nav>
+
             <div id="headerDiv">
-                <h1>Welcome to our organization's webpage!</h1>
-                <h2>You can buy/gift all of the items you see below to people in need</h2>
-                <h3>25% Discount if you buy 3 or more items at once!</h3>
+                <h2></h2>
+                <h3></h3>
             </div>
             <button onclick="ShoppingCart()" type="button" class="btn btn-success" data-bs-toggle="modal"
                 data-bs-target="#cartModal" style="margin-bottom: 5%;">
@@ -40,7 +68,7 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-head">Cart</h5>
-                            <button id="checkout-button" class="btn btn-success ms-auto" data-bs-target="#checkOutModal"
+                            <button id="checkout-button" class="btn btn-primary ms-auto" data-bs-target="#checkOutModal"
                                 data-bs-toggle="modal" onclick="ShoppingCart()">To checkout</button>
                         </div>
                         <div class="modal-body">
@@ -99,6 +127,9 @@
                                         <div class="valid-feedback">
                                             Looks good!
                                         </div>
+                                        <div class="invalid-feedback">
+                                            Please provide a valid country
+                                        </div>
                                     </div>
 
                                     <div class="col-md-6">
@@ -110,7 +141,7 @@
                                     </div>
                                     <div class="col-md-3">
                                         <label for="validationCustom05" class="form-label">Zip</label>
-                                        <input type="text" class="form-control" id="validationCustom05" required>
+                                        <input type="number" class="form-control" id="validationCustom05" required>
                                         <div class="invalid-feedback">
                                             Please provide a valid zip.
                                         </div>
@@ -140,7 +171,7 @@
                                         confirm</button>
                                 </div>
 
-                                <div id="buttonDiv" class="row g-3 d-none">
+                                <div id="confirmDiv" class="row g-3 d-none">
 
                                     <table id="confirmTable" style="text-align: center;" class='table table-striped'>
                                         <thead>
@@ -150,17 +181,18 @@
                                             </tr>
                                         </thead>
                                         <tbody id="confirm-table-content">
-
+                                            <!--table content-->
                                         </tbody>
                                         <tfoot>
                                             <tr>
                                                 <td><b>Final price</b></td>
-                                                <td><b><span id="confirm-final-price"></span></b></td>
+                                                <td><b><span id="confirm-final-price"><!--final price--></span></b></td>
                                             </tr>
                                         </tfoot>
                                     </table>
                                     <div class="col-12">
-                                        <button class="btn btn-success" type="button" onclick="confirmed()">Confirm order</button>
+                                        <button class="btn btn-success" type="button" onclick="confirmed()">Confirm
+                                            order</button>
                                     </div>
                                 </div>
                             </form>

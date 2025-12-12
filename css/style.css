@@ -1,40 +1,127 @@
-#container{
+/*color combination from here: https://htmlcolorcodes.com/color-chart/*/
+
+
+
+body{
+    background-color: white;
+}
+
+#container {
     text-align: center;
     margin: auto;
 }
 
-.col{
+.col {
     background-color: grey;
     margin: 2px;
 }
 
-.hidden{
+.hidden {
     opacity: 0;
     transition: all 1s;
 }
 
-.show{
+.show {
     opacity: 1;
 }
 
 
-.card{
-    background-color: #ecf0f5;
-
+.card {
+    background-color: #F7F9F9;
+    color: #111111;
 }
 
-.card:hover{
-    transform: translate3D(0,-1px,0) scale(1.03);
-    background-color: #cbd0d6;
+.card:hover {
+    transform: translate3D(0, -1px, 0) scale(1.03);
+    background-color: #F0F3F4;
 }
 
-.deleteText:hover{
+.card-body{
+    text-align: center;
+    margin: auto;
+}
+
+.card-text-price{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.deleteText:hover {
     text-decoration: underline;
     cursor: pointer;
 }
 
-header{
-    background-color: #efe8e800;
+.navbar {
+    font-size: 20px;
+    display: flex;
+    margin:auto;
+    position: relative;
+    align-items: center;
+    /*gradient bg from: https://cssgradient.io/*/
+    background: #2A7B9B;
+    background: linear-gradient(90deg, rgba(42, 123, 155, 1) 0%, rgba(87, 199, 133, 1) 50%, rgba(237, 221, 83, 1) 100%);
+    overflow: hidden;
+}
+
+.navText {
+    font-weight: bold;
+    padding: 0 20px;
+    white-space: nowrap;
+}
+
+#discount {
+    animation: colorChange;
+    animation-duration: infinite;
+    font-weight: bold;
     
 }
 
+.btn{
+    background-color: #42a38f;
+    color: white;
+}
+
+.btn:hover{
+    background-color: skyblue;
+}
+
+
+#inner-scroll {
+    position: relative;
+    display: flex;
+    flex-wrap: nowrap;
+    width: max-content;
+    overflow: hidden;
+    width: 100%;
+}
+
+.scrolling-content {
+    display: flex;
+    white-space: nowrap;
+    animation: scroll-left 40s linear infinite;
+}
+
+.inner-scroll div:nth-child(1){
+    animation: scroll-left 80s linear infinite;
+}
+
+
+@keyframes scroll-left {
+    0% {
+        transform: translateX(0%);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+@keyframes scroll-left2 {
+    0% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
