@@ -37,8 +37,6 @@ const renderProducts = () => {
     }
 
     let cardsHtml = "<div class='row g-4 justify-content-center'>"
-
-
     cardsHtml += products.map(product => {
         return `
                 <div class="card col-auto hidden d-flex flex-column" style="width: 18rem; margin: 3px; padding-top:10px">
@@ -54,7 +52,7 @@ const renderProducts = () => {
                                 <p class="card-text"><b>$${product.price.toFixed(2)}</b></p>
                             </div>
                             <div>
-                                <a href="#" id=${product.id} onclick="addToCart(this.id)" class="btn mt-auto">Add to Cart</a>
+                                <a id=${product.id} onclick="addToCart(this.id)" class="btn mt-auto">Add to Cart</a>
                             </div>
                         </div>
                     </div>
@@ -65,6 +63,7 @@ const renderProducts = () => {
 
     itemsContainer.innerHTML = cardsHtml;
 }
+
 /*
     Alert works like this: we have a pre added alert div with
     the d-none element so it is hidden first and the
@@ -115,8 +114,8 @@ const ShoppingCart = () => {
     tableContent.innerHTML += shoppingCart.map(product => {
         return `
             <tr>
-                <td>${product.title}</td>
-                <td>$${product.price}</td>
+                <td class="product-title">${product.title}</td>
+                <td class="product-price">$${product.price}</td>
                 <td><div class="deleteText" onclick="deleteProduct(${product.id})" style="color: red">Delete</div></td>
             </tr>
         `
@@ -126,8 +125,8 @@ const ShoppingCart = () => {
     confirmTableContent.innerHTML += shoppingCart.map(product => {
         return `
             <tr>
-                <td>${product.title}</td>
-                <td>$${product.price}</td>
+                <td class="product-title">${product.title}</td>
+                <td class="product-price">$${product.price}</td>
             </tr>
         `
     }).join("")

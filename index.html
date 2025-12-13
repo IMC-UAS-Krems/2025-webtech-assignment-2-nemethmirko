@@ -44,13 +44,9 @@
                     </div>
                 </div>
             </nav>
-
-            <div id="headerDiv">
-                <h2></h2>
-                <h3></h3>
-            </div>
-            <button onclick="ShoppingCart()" type="button" class="btn btn-success" data-bs-toggle="modal"
-                data-bs-target="#cartModal" style="margin-bottom: 5%;">
+            <button onclick="ShoppingCart()" id="cart-button" type="button" class="btn btn-success"
+                data-bs-toggle="modal" data-bs-target="#cartModal">
+                <img id="shopping-icon" src="./img/shopping-bag.webp"/>
                 Check your cart
             </button>
         </header>
@@ -75,7 +71,7 @@
                             <table id="table" style="text-align: center;" class='table table-striped'>
                                 <thead>
                                     <tr>
-                                        <th>Product</th>
+                                        <th style="text-align: left;">Product</th>
                                         <th>Price</th>
                                     </tr>
                                 </thead>
@@ -84,7 +80,7 @@
                                 </tbody>
                                 <tfoot>
                                     <tr>
-                                        <td><b>Final price</b></td>
+                                        <td style="text-align: left;"><b>Final price</b></td>
                                         <!--final price will be written here by js-->
                                         <td><b><span id="final-price"></span></b></td>
                                     </tr>
@@ -104,24 +100,24 @@
                         <div class="modal-body">
                             <form id="checkoutForm" class="row g-3 needs-validation" action="#" method="get" novalidate>
                                 <div id="formDiv" class="row g-3">
-                                    <div class="col-md-4">
+                                    <div class="form-items col-md-4">
                                         <label for="validationCustom01" class="form-label">First name</label>
-                                        <input type="text" class="form-control" id="validationCustom01" value="Mark"
+                                        <input type="text" class="form-control" id="validationCustom01" placeholder="Mark"
                                             required>
                                         <div class="valid-feedback">
                                             Looks good!
                                         </div>
                                     </div>
-                                    <div class="col-md-4">
+                                    <div class="form-items col-md-4">
                                         <label for="validationCustom02" class="form-label">Last name</label>
-                                        <input type="text" class="form-control" id="validationCustom02" value="Otto"
+                                        <input type="text" class="form-control" id="validationCustom02" placeholder="Otto"
                                             required>
                                         <div class="valid-feedback">
                                             Looks good!
                                         </div>
                                     </div>
 
-                                    <div class="col-md-4">
+                                    <div class="form-items col-md-4">
                                         <label for="validationCustom03" class="form-label">Country</label>
                                         <input type="text" class="form-control" id="validationCustom03" required>
                                         <div class="valid-feedback">
@@ -132,14 +128,14 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-md-6">
+                                    <div class="form-items col-md-6">
                                         <label for="validationCustom04" class="form-label">City</label>
                                         <input type="text" class="form-control" id="validationCustom04" required>
                                         <div class="invalid-feedback">
                                             Please provide a valid city.
                                         </div>
                                     </div>
-                                    <div class="col-md-3">
+                                    <div class="form-items col-md-3">
                                         <label for="validationCustom05" class="form-label">Zip</label>
                                         <input type="number" class="form-control" id="validationCustom05" required>
                                         <div class="invalid-feedback">
@@ -147,7 +143,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-md-3">
+                                    <div class="form-items col-md-3">
                                         <label for="validationCustom06" class="form-label">Email</label>
                                         <input type="email" class="form-control" id="validationCustom06" required>
                                         <div class="invalid-feedback">
@@ -167,7 +163,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <button class="btn btn-warning col-12" type="button" onclick="confirmOrder()">To
+                                    <button class="btn col-12" type="button" onclick="confirmOrder()">To
                                         confirm</button>
                                 </div>
 
@@ -176,7 +172,7 @@
                                     <table id="confirmTable" style="text-align: center;" class='table table-striped'>
                                         <thead>
                                             <tr>
-                                                <td>Product</td>
+                                                <td style="text-align: left;">Product</td>
                                                 <td>Price</td>
                                             </tr>
                                         </thead>
@@ -185,7 +181,7 @@
                                         </tbody>
                                         <tfoot>
                                             <tr>
-                                                <td><b>Final price</b></td>
+                                                <td style="text-align: left;"><b>Final price</b></td>
                                                 <td><b><span id="confirm-final-price"><!--final price--></span></b></td>
                                             </tr>
                                         </tfoot>

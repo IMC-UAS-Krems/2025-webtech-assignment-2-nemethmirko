@@ -1,4 +1,4 @@
-/*color combination from here: https://htmlcolorcodes.com/color-chart/*/
+/*color combination from here: https://htmlcolorcodes.com/color-chart/ */
 
 
 
@@ -25,10 +25,35 @@ body{
     opacity: 1;
 }
 
+#cart-button{
+    margin-bottom: 32px;
+    width: 77%;
+    margin-top: 10px;
+    background-color: #76cb7a;
+    font-weight: bold;
+    
+}
+
+.alert{
+    border: none;
+    stroke: none;
+    padding-left: 47px;
+}
+
+#cart-button:hover{
+    background-color: #52be88;
+}
+
+
+#shopping-icon{
+    width: auto;
+    height: 25px;
+}
 
 .card {
     background-color: #F7F9F9;
     color: #111111;
+    border: none;
 }
 
 .card:hover {
@@ -51,6 +76,23 @@ body{
 .deleteText:hover {
     text-decoration: underline;
     cursor: pointer;
+}
+
+.form-items{
+    text-align: left;
+}
+
+.form-check{
+    text-align: left;
+}
+
+
+.product-title{
+    text-align: left;
+}
+
+.product-price{
+    text-align: center;
 }
 
 .navbar {
@@ -81,10 +123,13 @@ body{
 .btn{
     background-color: #42a38f;
     color: white;
+    stroke: none;
+    border: none;
 }
 
 .btn:hover{
-    background-color: skyblue;
+    background-color: #308698;
+    color: white;
 }
 
 
