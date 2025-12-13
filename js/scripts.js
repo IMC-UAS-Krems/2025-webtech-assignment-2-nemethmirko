@@ -29,6 +29,7 @@ const products = [
 
 
 let shoppingCart = []
+
 const renderProducts = () => {
     let itemsContainer = document.getElementById("items-container")
     if (!itemsContainer) {
