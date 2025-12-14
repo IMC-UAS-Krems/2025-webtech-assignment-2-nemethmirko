@@ -36,8 +36,9 @@ const renderProducts = () => {
         console.error("Items container not found!")
         return;
     }
-
+    //must have div so the cards placement is responsive
     let cardsHtml = "<div class='row g-4 justify-content-center'>"
+    //go through each product and join them together
     cardsHtml += products.map(product => {
         return `
                 <div class="card col-auto hidden d-flex flex-column" style="width: 18rem; margin: 3px; padding-top:10px">
@@ -97,6 +98,7 @@ const addToCart = (id) => {
 }
 
 const ShoppingCart = () => {
+    //shopping cart table and confirmation table in one function (they are basically the same except confirm table does not have a remove button added to it)
     let tableContent = document.getElementById("table-content")
     let confirmTableContent = document.getElementById("confirm-table-content")
     let finalPrice = document.getElementById("final-price")
@@ -134,19 +136,19 @@ const ShoppingCart = () => {
     confirmFinalPrice.innerHTML = `$${price.toFixed(2)} <b>(discount: -${discount}%)</b>`
 
 }
-
+//pops specific product from shopping cart array
 const deleteProduct = (product) => {
     shoppingCart.pop(product)
     ShoppingCart()
 
 }
 
-
+//bootstrap validation of the form
 const confirmOrder = () => {
     const form = document.getElementById('checkoutForm');
     const formDiv = document.getElementById("formDiv");
     const confirmDiv = document.getElementById("confirmDiv");
-
+    //checks if form element exists
     if (!form) {
         console.error("Form element 'checkoutForm' not found.");
         return;
@@ -163,14 +165,16 @@ const confirmOrder = () => {
     }
 }
 
+//popup alert for confirmation of your purchase
 const confirmed = () => {
     alert("Thank you for your purchase!")
     window.location.reload()
 }
-
+//renders the products before anything else
 renderProducts()
 
 
 //part of fade animation
+//has to be called after product rendering
 const hiddenElements = document.querySelectorAll('.hidden')
 hiddenElements.forEach((el) => observer.observe(el))

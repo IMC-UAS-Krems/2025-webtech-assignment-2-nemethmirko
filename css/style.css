@@ -1,7 +1,5 @@
 /*color combination from here: https://htmlcolorcodes.com/color-chart/ */
 
-
-
 body{
     background-color: white;
 }
@@ -49,7 +47,7 @@ body{
     width: auto;
     height: 25px;
 }
-
+/*card stylings*/
 .card {
     background-color: #F7F9F9;
     color: #111111;
@@ -78,6 +76,7 @@ body{
     cursor: pointer;
 }
 
+/*form stylings*/
 .form-items{
     text-align: left;
 }
@@ -113,13 +112,7 @@ body{
     white-space: nowrap;
 }
 
-#discount {
-    animation: colorChange;
-    animation-duration: infinite;
-    font-weight: bold;
-    
-}
-
+/*button styling*/
 .btn{
     background-color: #42a38f;
     color: white;
@@ -132,7 +125,7 @@ body{
     color: white;
 }
 
-
+/*scrolling animation*/
 #inner-scroll {
     position: relative;
     display: flex;
